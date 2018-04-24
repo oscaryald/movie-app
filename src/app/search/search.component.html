@@ -1,0 +1,24 @@
+<div class="col s12">
+
+  <input type="text"
+         class="search-input"
+         placeholder="Search a movie"
+         [(ngModel)]="search"
+         (input)="search$.next(search)"
+  >
+
+  <div class="row">
+    <app-movie-preview *ngFor="let movie of searchResults; let i = index"
+                       [movie]="movie"
+                       (click)="setCurrentMovie(movie)"
+
+
+    ></app-movie-preview>
+
+
+    <h3 [ngStyle]="{'text-align': center}">No results for {{search}}</h3>
+  </div>
+
+
+
+</div>
