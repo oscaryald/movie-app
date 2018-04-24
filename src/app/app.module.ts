@@ -9,6 +9,7 @@ import {SearchComponent} from './search/search.component';
 import {MoviePreviewComponent} from './search/movie-preview/movie-preview.component';
 import {FooterComponent} from './footer/footer.component';
 import {MovieService} from './shared/movie.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -23,7 +24,8 @@ import {MovieService} from './shared/movie.service';
     ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
     providers: [MovieService],
     bootstrap: [AppComponent]

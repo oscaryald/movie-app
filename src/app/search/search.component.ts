@@ -13,7 +13,7 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class SearchComponent implements OnInit {
 
-  searchResults: Movie[] = data;
+  searchResults: Movie[] = [];
 
   search$: Subject<string> = new Subject<string>();
   fetching: boolean = false;
@@ -27,11 +27,23 @@ export class SearchComponent implements OnInit {
         .map(query => {
             this.fetching = true
             return query;
-         }).subscribe(this.searchQuery.bind(this))
+         }).subscribe( (query) => {
+            this.searchQuery(query)
+         });
   }
 
   searchQuery(query: string){
-    console.log(query)
+    if(query.length > 0){
+        this.movieService.searhMovie(query)
+            .subscribe((results) => {
+              this.fetching = false;
+              this.searchResults = results;
+            })
+    }else{
+      this.fetching = false;
+      this.searchResults = [];
+    }
+
   }
 
   setCurrentMovie(movie: Movie){
